@@ -6,8 +6,9 @@ package game;
  * Pat
  * in progress
  */
-public class Result {
-
-	private Enum Result;
-
+public enum Result {
+	WHITE_WIN,
+	BLACK_WIN,
+	PAT,
+	GAME_IN_PROGRESS
 }

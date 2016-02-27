@@ -1,10 +1,9 @@
 package game;
 
-import java.util.Arrays;
-
 public class Board {
 
-	private Arrays cells;
+	private int[][] cells;
+//	TODO У нас же двумерный массив интов, правильно?
 
 	private void move() {
 

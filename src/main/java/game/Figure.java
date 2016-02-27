@@ -13,6 +13,10 @@ public abstract class Figure {
 
 	private final String type;
 
+    /**
+     * TODO Если у нас таблица и тип константы, то их нельзя мутить в абстрактном классе
+     */
+
 	/**
 	 * Таблица куда можно рубить
 	 * 
