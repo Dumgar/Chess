@@ -9,7 +9,7 @@ public abstract class Figure {
 	/**
 	 * Таблица возможных ходов
 	 */
-	private final Arrays moveTable;
+	private final boolean[][] moveTable;
 
 	private final String type;
 
@@ -22,6 +22,11 @@ public abstract class Figure {
 	 * 
 	 */
 	private Arrays killTable;
+
+	public Figure() {
+		moveTable = new boolean[64][64];
+		type = null;
+	}
 
 	public boolean isWhite() {
 		return false;
