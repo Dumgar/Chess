@@ -6,4 +6,12 @@ public class Coord {
 
 	private CoordNum num;
 
+
+	public CoordLetter getLetter() {
+		return letter;
+	}
+
+	public CoordNum getNum() {
+		return num;
+	}
 }
