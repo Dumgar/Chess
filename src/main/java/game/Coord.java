@@ -2,20 +2,25 @@ package game;
 
 public class Coord {
 
-	private CoordLetter letter;
+	private char letter;
 
-	private CoordNum num;
+	private int num;
 
-	public Coord(CoordLetter letter, CoordNum num) {
-        this.letter = letter;
-        this.num = num;
+	public Coord(String coordinate) {
+        
     }
 
-	public CoordLetter getLetter() {
+	public char getLetter() {
 		return letter;
 	}
 
-	public CoordNum getNum() {
+	public int getNum() {
 		return num;
 	}
+
+    public int getLetterOrd() {}
+
+    public int getNumOrd() {}
 }
+
+// TODO создать 4 геттера + перевод координат в нужном.
