@@ -1,5 +1,7 @@
 package game;
 
+import game.figures.Figure;
+
 public class Board {
 
 	private Figure[][] cells = new Figure[64][64];

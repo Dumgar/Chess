@@ -6,6 +6,10 @@ public class Coord {
 
 	private CoordNum num;
 
+	public Coord(CoordLetter letter, CoordNum num) {
+        this.letter = letter;
+        this.num = num;
+    }
 
 	public CoordLetter getLetter() {
 		return letter;
