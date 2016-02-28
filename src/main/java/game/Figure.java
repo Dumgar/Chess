@@ -4,51 +4,48 @@ import java.util.Arrays;
 
 public abstract class Figure {
 
-	private boolean color;
-
 	/**
 	 * Таблица возможных ходов
+	 * и убийств
 	 */
 	private final boolean[][] moveTable;
 
-	private final String type;
+	private final boolean[][] killTable;
+
+	private String type;
+	private boolean color;
 
     /**
-     * TODO Если у нас таблица и тип константы, то их нельзя мутить в абстрактном классе
+     *
      */
 
 	/**
-	 * Таблица куда можно рубить
-	 * 
+	 * Добавил в конструктор
 	 */
-	private Arrays killTable;
 
 	public Figure() {
 		moveTable = new boolean[64][64];
+		killTable = new boolean[64][64];
 		type = null;
+		color = true;
 	}
 
 	public boolean isWhite() {
+		return color;
+	}
+
+	public boolean getKillTable(Coord in, Coord out) {
 		return false;
 	}
 
-	public boolean getKillTable() {
-		return false;
-	}
-
-	public boolean getMoveTable() {
+	public boolean getMoveTable(Coord in, Coord out) {
 		return false;
 	}
 
 	public String getType() {
-		return null;
+		return type;
 	}
 
-	/**
-	 * принимает на вход координаты  в виде пары значений перечислимого типа
-	 */
-	public boolean checkMove(Coord in, Coord out) {
-		return false;
-	}
+
 
 }
