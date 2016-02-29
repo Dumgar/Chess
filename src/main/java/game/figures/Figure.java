@@ -20,6 +20,7 @@ public abstract class Figure {
 		return color;
 	}
 
+	//TODO Помоему методы написаны неправильно
 	public boolean getKillTable(Coord in, Coord out) {
         int inTemp = in.getLetterOrd() * 10 + in.getNumOrd();
         int outTemp = out.getLetterOrd() * 10 + out.getNumOrd();

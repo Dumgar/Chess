@@ -1,8 +1,8 @@
 package game.figures;
 
-public class Qeen extends Figure {
+public class Queen extends Figure {
 
-    public Qeen(boolean color) {
+    public Queen(boolean color) {
         this.color = color;
         this.type = "qeen";
 
