@@ -1,17 +1,45 @@
 package game.figures;
 
-/**
- * Created by romandmitriev on 28.02.16.
- */
 public class Knight extends Figure {
-
-    private final boolean[][] moveTable;
-    private final boolean[][] killTable;
 
     public Knight(boolean color) {
         this.color = color;
-        this.type = "rook";
+        this.type = "knight";
 
+        createTable();
+    }
 
+    private void createTable() {
+        for (int i = 0; i < 64; i++) {
+            for (int j = 0; j < 64; j++) {
+                if ((j - i) == 6 && i%8 !=0 && (i-1)%8 !=0) {
+                    moveTable[i][j] = true;
+                }
+                if ((i - j) == 6 && j%8 !=0 && (j-1)%8 !=0) {
+                    moveTable[i][j] = true;
+                }
+
+                if ((j - i) == 10&& (i+2)%8 !=0 && (i+1)%8 !=0) {
+                    moveTable[i][j] = true;
+                }
+                if ((i - j) == 10&& (j+2)%8 !=0 && (j+1)%8 !=0) {
+                    moveTable[i][j] = true;
+                }
+
+                if ((j - i) == 15 && i%8!=0) {
+                    moveTable[i][j] = true;
+                }
+                if ((i - j) == 15 && j%8!=0) {
+                    moveTable[i][j] = true;
+                }
+
+                if ((j - i) == 17&& (i+1)%8!=0) {
+                    moveTable[i][j] = true;
+                }
+                if ((i - j) == 17&& (j+1)%8!=0) {
+                    moveTable[i][j] = true;
+                }
+            }
+        }
     }
 }

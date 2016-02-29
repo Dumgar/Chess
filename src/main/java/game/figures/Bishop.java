@@ -1,17 +1,48 @@
 package game.figures;
 
-/**
- * Created by romandmitriev on 28.02.16.
- */
 public class Bishop extends Figure {
-
-    private final boolean[][] moveTable;
-    private final boolean[][] killTable;
 
     public Bishop(boolean color) {
         this.color = color;
-        this.type = "rook";
+        this.type = "bishop";
 
+        createTable();
+    }
 
+    private void createTable() {
+        for (int i = 0; i < 64; i++) {
+            for (int j = 0; j < 64; j++) {
+                if ((j - i) % 7 == 0 && i!=j) {
+                    moveTable[i][j] = true;
+                }
+
+                if ((j - i) % 9 == 0 && i!=j) {
+                    moveTable[i][j] = true;
+                }
+            }
+        }
+
+        for (int i = 0; i < 64; i++) {
+            for (int j = 0; j < 64; j++) {
+                if ((j - i) % 7 == 0) {
+                    int k = Math.abs(j-i)/7;
+                    for (int l = 0; l < k; l++){
+                        if((i-l)%8 == 0){
+                            moveTable[i][j]=false;
+                        }
+                    }
+
+                }
+
+                if ((j - i) % 9 == 0) {
+                    int k = Math.abs(j-i)/9;
+                    for (int l = 0; l < k; l++){
+                        if((i+l+1)%8 == 0){
+                            moveTable[i][j]=false;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

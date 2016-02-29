@@ -8,37 +8,33 @@ public abstract class Figure {
 	 * Для каждой фигуры мы создаем фиксированную таблицу возможных ходов фигуры. Это позволит в дальнейшем не проверять
      * может ли фигура ходить на заданную координату. Таблица убийств - по сути только для пешки.
 	 */
-	protected final boolean[][] moveTable;
-	protected final boolean[][] killTable;
+	protected boolean[][] moveTable;
+	protected boolean[][] killTable;
 
 	protected String type;
 	protected boolean color;
 
-	public Figure() {
-		moveTable = new boolean[64][64];
-		killTable = new boolean[64][64];
-		type = null;
-		color = true;
-	}
+	public Figure() {}
 
 	public boolean isWhite() {
 		return color;
 	}
 
 	public boolean getKillTable(Coord in, Coord out) {
-		return false;
+        int inTemp = in.getLetterOrd() * 10 + in.getNumOrd();
+        int outTemp = out.getLetterOrd() * 10 + out.getNumOrd();
+        return killTable[inTemp][outTemp];
 	}
 
-//	TODO Мы на вход в этих двух методах получаем енамы. Как потом найти по ним значение в таблице? Нужны ли нам эти енамы вообще?
-
 	public boolean getMoveTable(Coord in, Coord out) {
-		return false;
+        int inTemp = in.getLetterOrd() * 10 + in.getNumOrd();
+        int outTemp = out.getLetterOrd() * 10 + out.getNumOrd();
+        return moveTable[inTemp][outTemp];
 	}
 
 	public String getType() {
 		return type;
 	}
 
-
-
+    private void createTable() {}
 }
