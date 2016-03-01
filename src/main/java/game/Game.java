@@ -7,10 +7,10 @@ import java.io.InputStreamReader;
 public class Game {
     Coord coordFrom;
     Coord coordTo;
+    Player player1;
+    Player player2;
 
 	public Game(){
-        Player player1;
-        Player player2;
         Board board = new Board();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String playerName;
