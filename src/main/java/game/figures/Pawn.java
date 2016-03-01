@@ -15,6 +15,7 @@ public class Pawn extends Figure {
             if (i % 8 != 0)
                 moveTable[i][i+1] = true;
         }
+        //TODO Написать случай, что пешка ходит через клетку.
 
         killTable = new boolean[64][64];
         for (int i = 1; i < 63; i++) {

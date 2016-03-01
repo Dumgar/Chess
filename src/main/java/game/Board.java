@@ -1,60 +1,62 @@
 package game;
 
+import com.sun.org.apache.xpath.internal.functions.FuncBoolean;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import game.figures.*;
 
 public class Board {
 
 
 	Board(){
-        cells = new Figure[8][8];
-        Figure whitePawn = new Pawn(true);
-        Figure blackPawn = new Pawn(false);
-        Figure whiteBishop = new Bishop(true);
-        Figure blackBishop = new Bishop(false);
-        Figure whiteRook = new Rook(true);
-        Figure blackRook = new Rook(false);
-        Figure whiteKnight = new Knight(true);
-        Figure blackKnight = new Knight(false);
-        Figure whiteQueen = new Queen(true);
-        Figure blackQueen = new Queen(false);
-        Figure whiteKing = new King(true);
-        Figure blackKing = new King(false);
-        for (int i = 0; i < 8; i++){
-            cells[i][1] = whitePawn;
-        }
-        for (int i = 0; i < 8; i++){
-            cells[i][6] = blackPawn;
-        }
-        cells[0][0] = cells[7][0] = whiteRook;
-        cells[0][7] = cells[7][7] = blackRook;
-        cells[1][0] = cells[6][0] = whiteKnight;
-        cells[1][7] = cells[6][7] = blackKnight;
-        cells[2][0] = cells[5][0] = whiteBishop;
-        cells[2][7] = cells[4][7] = blackBishop;
-        cells[4][0] = whiteQueen;
-        cells[4][7] = blackQueen;
-        cells[5][0] = whiteKing;
-        cells[5][7] = blackKing;
-    }
+		cells = new Figure[8][8];
+		Figure whitePawn = new Pawn(true);
+		Figure blackPawn = new Pawn(false);
+		Figure whiteBishop = new Bishop(true);
+		Figure blackBishop = new Bishop(false);
+		Figure whiteRook = new Rook(true);
+		Figure blackRook = new Rook(false);
+		Figure whiteKnight = new Knight(true);
+		Figure blackKnight = new Knight(false);
+		Figure whiteQueen = new Queen(true);
+		Figure blackQueen = new Queen(false);
+		Figure whiteKing = new King(true);
+		Figure blackKing = new King(false);
+		for (int i = 0; i < 8; i++){
+			cells[i][1] = whitePawn;
+		}
+		for (int i = 0; i < 8; i++){
+			cells[i][6] = blackPawn;
+		}
+		cells[0][0] = cells[7][0] = whiteRook;
+		cells[0][7] = cells[7][7] = blackRook;
+		cells[1][0] = cells[6][0] = whiteKnight;
+		cells[1][7] = cells[6][7] = blackKnight;
+		cells[2][0] = cells[5][0] = whiteBishop;
+		cells[2][7] = cells[4][7] = blackBishop;
+		cells[4][0] = whiteQueen;
+		cells[4][7] = blackQueen;
+		cells[5][0] = whiteKing;
+		cells[5][7] = blackKing;
+	}
 
 	private Figure[][] cells;
 
 
 
-    //TODO Будет ли метод давать исключение?
+	//TODO Будет ли метод давать исключение?
 	private void move(Coord in, Coord out) {
-        if (!checkMove(in,out)){
-            System.out.println("Данный ход не возможен, фигура"+ cells[in.getLetterOrd()][in.getNumOrd()].getType() + "не может туда ходить, или на пути другая фигура");
-            return;
-        }
-        if (getCell(out) != null){
-            if (!getCell(in).getKillTable(in, out)){
-                System.out.println("Данный ход не возможен, фигура"+ cells[in.getLetterOrd()][in.getNumOrd()].getType() + "не может туда рубить");
-                return ;
-            }
-        }
-        cells[out.getLetterOrd()][out.getNumOrd()] = getCell(in);
-        cells[in.getLetterOrd()][in.getNumOrd()] = null;
+		if (!checkMove(in,out)){
+			System.out.println("Данный ход не возможен, фигура"+ cells[in.getLetterOrd()][in.getNumOrd()].getType() + "не может туда ходить, или на пути другая фигура");
+			return;
+		}
+		if (getCell(out) != null){
+			if (!getCell(in).getKillTable(in, out)){
+				System.out.println("Данный ход не возможен, фигура"+ cells[in.getLetterOrd()][in.getNumOrd()].getType() + "не может туда рубить");
+				return ;
+			}
+		}
+		cells[out.getLetterOrd()][out.getNumOrd()] = getCell(in);
+		cells[in.getLetterOrd()][in.getNumOrd()] = null;
 	}
 
 	public Figure getCell(Coord coord) {
@@ -150,6 +152,24 @@ public class Board {
 			return true;
 		}
 		return false;
+	}
+
+	private Coord findKing(boolean color) {
+		for (int i = 0; i < 64; i++){
+			for (int j = 0; j < 64; j++){
+				if ((cells[i][j] instanceof King) && cells[i][j].isWhite() == color){
+					return new Coord()
+				}
+			}
+		}
+	}
+
+	public boolean checkCheck(){
+		return true;
+	}
+
+	public  boolean checkMate() {
+		return true;
 	}
 
 
