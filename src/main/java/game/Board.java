@@ -48,24 +48,20 @@ public class Board {
 
 
 	//TODO Будет ли метод давать исключение?
-	private boolean move(Coord in, Coord out) {
+	public void move(Coord in, Coord out) throws MoveException{
 		if (!checkMove(in,out)){
-			System.out.println("Данный ход не возможен, фигура"+ cells[in.getLetterOrd()][in.getNumOrd()].getType() + "не может туда ходить, или на пути другая фигура");
-			return false;
+            throw new MoveException("Данный ход не возможен, фигура"+ cells[in.getLetterOrd()][in.getNumOrd()].getType() + "не может туда ходить, или на пути другая фигура");
 		}
 		if (getCell(out) != null){
 			if (!getCell(in).getKillTable(in, out)){
-				System.out.println("Данный ход не возможен, фигура"+ cells[in.getLetterOrd()][in.getNumOrd()].getType() + "не может туда рубить");
-				return false;
+                throw new MoveException("Данный ход не возможен, фигура"+ cells[in.getLetterOrd()][in.getNumOrd()].getType() + "не может туда рубить");
 			}
             if (getCell(in).getColor() == getCell(out).getColor()){
-                System.out.println("Данный ход не возможен, фигура не может рубить фигуры своего цвета");
-                return false;
+                throw new MoveException("Данный ход не возможен, фигура не может рубить фигуры своего цвета");
             }
 		}
 		cells[out.getLetterOrd()][out.getNumOrd()] = getCell(in);
 		cells[in.getLetterOrd()][in.getNumOrd()] = null;
-        return true;
 	}
 
 	public Figure getCell(Coord coord) {
@@ -201,7 +197,12 @@ public class Board {
                             Coord outCoord = new Coord(t,k);
                             if (cells[i][j].getMoveTable(inCoord,outCoord)){
                                 nextTurnBoard = new Board(cells);
-                                nextTurnBoard.move(inCoord,outCoord);
+                                try {
+                                    nextTurnBoard.move(inCoord,outCoord);
+                                } catch (MoveException e) {
+                                    System.out.println(e.getMessage());
+                                    e.printStackTrace();
+                                }
                                 if (nextTurnBoard.checkCheck(color) == false){
                                     return false;
                                 }
