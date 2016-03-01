@@ -13,7 +13,7 @@ public class Game {
     Board board;
 
 	public Game(){
-        board = new Board();
+        this.board = new Board();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String playerName;
         try {

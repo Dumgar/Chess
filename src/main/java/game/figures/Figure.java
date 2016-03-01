@@ -26,6 +26,13 @@ public abstract class Figure {
         int outTemp = out.getLetterOrd() * 8 + out.getNumOrd();
         return killTable[inTemp][outTemp];
 	}
+	public int coord2int(Coord coord){
+        return coord.getLetterOrd() * 8 + coord.getNumOrd();
+    }
+    public Coord int2cord(int i){
+        Coord result = new Coord(i/8, i%8);
+        return result;
+    }
 
 	public boolean getMoveTable(Coord in, Coord out) {
         int inTemp = in.getLetterOrd() * 8 + in.getNumOrd();

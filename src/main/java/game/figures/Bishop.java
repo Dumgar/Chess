@@ -1,5 +1,7 @@
 package game.figures;
 
+import game.Coord;
+
 public class Bishop extends Figure {
 
     public Bishop(boolean color) {
@@ -46,5 +48,13 @@ public class Bishop extends Figure {
                 }
             }
         }
+    }
+
+    public boolean getKillTable(Coord in, Coord out) {
+        return (Math.abs(in.getLetterOrd()-out.getLetterOrd()) == Math.abs(in.getNumOrd()-out.getNumOrd()));
+    }
+
+    public boolean getMoveTable(Coord in, Coord out) {
+        return (Math.abs(in.getLetterOrd()-out.getLetterOrd()) == Math.abs(in.getNumOrd()-out.getNumOrd()));
     }
 }
