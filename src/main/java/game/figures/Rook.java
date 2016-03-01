@@ -11,6 +11,7 @@ public class Rook extends Figure {
     }
 
     private void createTable() {
+        moveTable = new boolean[64][64];
         for (int i =0; i <64; i++){
             int nk = (i+8)/8;
             for (int j = 8*nk-8; j < 8*nk ; j++){

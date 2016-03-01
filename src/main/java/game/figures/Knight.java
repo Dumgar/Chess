@@ -11,6 +11,7 @@ public class Knight extends Figure {
     }
 
     private void createTable() {
+        moveTable = new boolean[64][64];
         for (int i = 0; i < 64; i++) {
             for (int j = 0; j < 64; j++) {
                 if ((j - i) == 6 && i%8 !=0 && (i-1)%8 !=0) {

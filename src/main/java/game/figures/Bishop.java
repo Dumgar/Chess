@@ -11,6 +11,7 @@ public class Bishop extends Figure {
     }
 
     private void createTable() {
+        moveTable = new boolean[64][64];
         for (int i = 0; i < 64; i++) {
             for (int j = 0; j < 64; j++) {
                 if ((j - i) % 7 == 0 && i!=j) {

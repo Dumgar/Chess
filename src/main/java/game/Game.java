@@ -1,5 +1,8 @@
 package game;
 
+import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
+import game.Exeptions.MoveException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -31,6 +34,7 @@ public class Game {
 
 	public void startGame(Player player1, Player player2) {
         while (true) {
+            if (player2.mate) break;
             if (player1.check) {
                 if (board.checkMate(player1.color)) {
                     player1.mate = true;
@@ -38,6 +42,7 @@ public class Game {
                 }
             }
             getStep(player1);
+            if (player1.mate) break;
             if (player2.check) {
                 if (board.checkMate(player2.color)) {
                     player2.mate = true;
@@ -53,6 +58,9 @@ public class Game {
 	}
 
     public void getStep(Player player) {
+        Coord from;
+        Coord to;
+        System.out.println("Ходит игрок " + player.name + ":");
         String step = null;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {
@@ -61,7 +69,14 @@ public class Game {
             e.printStackTrace();
         }
         if (step.length() == 4) {
-            colorCheck(player,makeCoord(step, player));
+            from = makeCoord(step, player)[0];
+            to = makeCoord(step, player)[1];
+            colorCheck(player, from);
+            try {
+                board.move(from, to);
+            } catch (MoveException e) {
+                e.printStackTrace();
+            }
         } else if (step.equals("surrender")) {
             System.out.println("Вы признали своё поражение!");
             player.mate = true;
@@ -72,7 +87,7 @@ public class Game {
     }
 
     private Coord[] makeCoord(String temp, Player player) {
-        Coord[] coords = new Coord[1];
+        Coord[] coords = new Coord[2];
         temp = temp.toLowerCase();
         if (temp.charAt(0) >= 'a' && temp.charAt(0) <= 'i' && temp.charAt(1) >= '1' && temp.charAt(1) <= '8') {
             coordFrom = new Coord(temp.charAt(0), Character.getNumericValue(temp.charAt(1)));
@@ -91,8 +106,8 @@ public class Game {
         return coords;
     }
 
-    private void colorCheck(Player player, Coord[] current) {
-        if (player.color != board.getCell(current[0]).getColor()) {
+    private void colorCheck(Player player, Coord current) {
+        if (player.color != board.getCell(current).getColor()) {
             System.out.println("Эта фигура не вашего цвета! Попробуйте еще раз.");
             getStep(player);
         }

@@ -11,6 +11,7 @@ public class Queen extends Figure {
     }
 
     private void createTable() {
+        moveTable = new boolean[64][64];
         boolean[][] moveTable1 = new boolean[64][64];
         boolean[][] moveTable2 = new boolean[64][64];
         for (int i = 0; i < 64; i++) {
