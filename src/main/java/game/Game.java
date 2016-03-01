@@ -9,9 +9,10 @@ public class Game {
     Coord coordTo;
     Player player1;
     Player player2;
+    Board board;
 
 	public Game(){
-        Board board = new Board();
+        board = new Board();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String playerName;
         try {
@@ -48,7 +49,7 @@ public class Game {
             e.printStackTrace();
         }
         if (step.length() == 4) {
-            makeCoord(step, player);
+            colorCheck(player,makeCoord(step, player));
         } else if (step.equals("surrender")) {
             System.out.println("Вы признали своё поражение!");
             player.mate = true;
@@ -58,18 +59,29 @@ public class Game {
         }
     }
 
-    private void makeCoord(String temp, Player player) {
+    private Coord[] makeCoord(String temp, Player player) {
+        Coord[] coords = new Coord[1];
         temp = temp.toLowerCase();
         if (temp.charAt(0) >= 'a' && temp.charAt(0) <= 'i' && temp.charAt(1) >= '1' && temp.charAt(1) <= '8') {
             coordFrom = new Coord(temp.charAt(0), Character.getNumericValue(temp.charAt(1)));
+            coords[0] = coordFrom;
         } else {
             System.out.println("Неверный формат координаты. Попробуйте еще раз.");
             getStep(player);
         }
         if (temp.charAt(2) >= 'a' && temp.charAt(2) <= 'i' && temp.charAt(3) >= '1' && temp.charAt(3) <= '8') {
             coordTo = new Coord(temp.charAt(2), Character.getNumericValue(temp.charAt(3)));
+            coords[1] = coordTo;
         } else {
             System.out.println("Неверный формат координаты. Попробуйте еще раз.");
+            getStep(player);
+        }
+        return coords;
+    }
+
+    private void colorCheck(Player player, Coord[] current) {
+        if (player.color != board.getCell(current[0]).isWhite()) {
+            System.out.println("Эта фигура не вашего цвета! Попробуйте еще раз.");
             getStep(player);
         }
     }
