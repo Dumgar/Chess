@@ -32,11 +32,11 @@ public class Board {
 		cells[1][0] = cells[6][0] = whiteKnight;
 		cells[1][7] = cells[6][7] = blackKnight;
 		cells[2][0] = cells[5][0] = whiteBishop;
-		cells[2][7] = cells[4][7] = blackBishop;
-		cells[4][0] = whiteQueen;
-		cells[4][7] = blackQueen;
-		cells[5][0] = whiteKing;
-		cells[5][7] = blackKing;
+		cells[2][7] = cells[5][7] = blackBishop;
+		cells[3][0] = whiteQueen;
+		cells[3][7] = blackQueen;
+		cells[4][0] = whiteKing;
+		cells[4][7] = blackKing;
 	}
 
     Board(Figure[][] currentCells){
