@@ -5,7 +5,7 @@ package game.Exeptions;
  */
 public class InputDataException extends Throwable{
     public InputDataException(String s){
-        new Throwable(s);
+        super(s);
     }
     public InputDataException(){
         

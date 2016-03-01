@@ -5,7 +5,7 @@ package game.Exeptions;
  */
 public class MoveException extends Throwable {
     public MoveException(String s){
-         new Throwable(s);
+         super(s);
     }
     public MoveException(){};
 }
