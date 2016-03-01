@@ -32,22 +32,20 @@ public class Game {
 
 	public void startGame(Player player1, Player player2) {
         while (true) {
-            if (player2.mate) break;
+            getStep(player1);
             if (player1.check) {
                 if (board.checkMate(player1.color)) {
                     player1.mate = true;
                     break;
                 }
             }
-            getStep(player1);
-            if (player1.mate) break;
+            getStep(player2);
             if (player2.check) {
                 if (board.checkMate(player2.color)) {
                     player2.mate = true;
                     break;
                 }
             }
-            getStep(player2);
         }
 
         if (player1.mate) System.out.println("Победил игрок " + player2.name);
@@ -79,7 +77,7 @@ public class Game {
             }
         } else if (step.equals("surrender")) {
             System.out.println("Вы признали своё поражение!");
-            player.mate = true;
+            System.exit(0);
         } else {
             System.out.println("Нет такой команды. Попробуйте еще раз.");
             getStep(player);
