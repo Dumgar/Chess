@@ -7,5 +7,7 @@ public class InputDataException extends Throwable{
     public InputDataException(String s){
         new Throwable(s);
     }
-    public InputDataException(){};
+    public InputDataException(){
+        
+    };
 }
