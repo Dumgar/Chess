@@ -1,6 +1,5 @@
 package game;
 
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import game.Exeptions.MoveException;
 
 import java.io.BufferedReader;

@@ -10,10 +10,24 @@ public class Pawn extends Figure {
     }
 
     private void createTable() {
-        moveTable = new boolean[64][64];
-        for (int i = 1; i < 63; i++) {
-            if (i % 8 != 0)
-                moveTable[i][i+1] = true;
+        if (color) {
+            moveTable = new boolean[64][64];
+            for (int i = 1; i < 63; i++) {
+                if (i % 8 != 0)
+                    moveTable[i][i+1] = true;
+            }
+            for (int i = 1; i < 63; i+=8) {
+                moveTable[i][i + 2] = true;
+            }
+        }
+        if (!color) {
+            for (int i = 1; i < 63; i++) {
+                if (i % 8 != 0)
+                    moveTable[i][i - 1] = true;
+            }
+            for (int i = 6; i < 63; i+=8) {
+                moveTable[i][i-2] = true;
+            }
         }
         //TODO Написать случай, что пешка ходит через клетку.
 
