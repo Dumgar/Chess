@@ -10,8 +10,8 @@ public class Pawn extends Figure {
     }
 
     private void createTable() {
+        moveTable = new boolean[64][64];
         if (color) {
-            moveTable = new boolean[64][64];
             for (int i = 1; i < 63; i++) {
                 if (i % 8 != 0)
                     moveTable[i][i+1] = true;
