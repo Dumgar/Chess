@@ -7,6 +7,7 @@ public class Bishop extends Figure {
         this.type = "bishop";
 
         createTable();
+        killTable = moveTable;
     }
 
     private void createTable() {

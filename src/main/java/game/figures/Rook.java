@@ -7,6 +7,7 @@ public class Rook extends Figure {
         this.type = "rook";
 
         createTable();
+        killTable = moveTable;
     }
 
     private void createTable() {

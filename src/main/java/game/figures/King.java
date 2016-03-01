@@ -7,6 +7,7 @@ public class King extends Figure {
         this.type = "king";
 
         createTable();
+        killTable = moveTable;
     }
 
     private void createTable() {
