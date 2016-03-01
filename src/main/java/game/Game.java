@@ -69,11 +69,13 @@ public class Game {
         if (step.length() == 4) {
             from = makeCoord(step, player)[0];
             to = makeCoord(step, player)[1];
-            colorCheck(player, from);
-            try {
-                board.move(from, to);
-            } catch (MoveException e) {
-                e.printStackTrace();
+            if (colorCheck(player, from)) {
+                try {
+                    board.move(from, to);
+                } catch (MoveException e) {
+                    e.printStackTrace();
+                    getStep(player);
+                }
             }
         } else if (step.equals("surrender")) {
             System.out.println("Вы признали своё поражение!");
@@ -104,11 +106,13 @@ public class Game {
         return coords;
     }
 
-    private void colorCheck(Player player, Coord current) {
+    private boolean colorCheck(Player player, Coord current) {
         if (player.color != board.getCell(current).getColor()) {
             System.out.println("Эта фигура не вашего цвета! Попробуйте еще раз.");
             getStep(player);
+            return false;
         }
+        return true;
     }
 
 //	TODO Непонятно пока как определять победителя, создавать ли класс игрок или как-то флагами это все делать.
