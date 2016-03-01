@@ -92,7 +92,7 @@ public class Game {
     }
 
     private void colorCheck(Player player, Coord[] current) {
-        if (player.color != board.getCell(current[0]).isWhite()) {
+        if (player.color != board.getCell(current[0]).getColor()) {
             System.out.println("Эта фигура не вашего цвета! Попробуйте еще раз.");
             getStep(player);
         }
