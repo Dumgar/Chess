@@ -22,14 +22,14 @@ public abstract class Figure {
 
 	//TODO Помоему методы написаны неправильно
 	public boolean getKillTable(Coord in, Coord out) {
-        int inTemp = in.getLetterOrd() * 10 + in.getNumOrd();
-        int outTemp = out.getLetterOrd() * 10 + out.getNumOrd();
+        int inTemp = in.getLetterOrd() * 8 + in.getNumOrd();
+        int outTemp = out.getLetterOrd() * 8 + out.getNumOrd();
         return killTable[inTemp][outTemp];
 	}
 
 	public boolean getMoveTable(Coord in, Coord out) {
-        int inTemp = in.getLetterOrd() * 10 + in.getNumOrd();
-        int outTemp = out.getLetterOrd() * 10 + out.getNumOrd();
+        int inTemp = in.getLetterOrd() * 8 + in.getNumOrd();
+        int outTemp = out.getLetterOrd() * 8 + out.getNumOrd();
         return moveTable[inTemp][outTemp];
 	}
 
