@@ -1,5 +1,6 @@
 package game;
 
+import game.Exeptions.MoveException;
 import game.figures.*;
 
 public class Board {
@@ -47,19 +48,24 @@ public class Board {
 
 
 	//TODO Будет ли метод давать исключение?
-	private void move(Coord in, Coord out) {
+	private boolean move(Coord in, Coord out) {
 		if (!checkMove(in,out)){
 			System.out.println("Данный ход не возможен, фигура"+ cells[in.getLetterOrd()][in.getNumOrd()].getType() + "не может туда ходить, или на пути другая фигура");
-			return;
+			return false;
 		}
 		if (getCell(out) != null){
 			if (!getCell(in).getKillTable(in, out)){
 				System.out.println("Данный ход не возможен, фигура"+ cells[in.getLetterOrd()][in.getNumOrd()].getType() + "не может туда рубить");
-				return ;
+				return false;
 			}
+            if (getCell(in).getColor() == getCell(out).getColor()){
+                System.out.println("Данный ход не возможен, фигура не может рубить фигуры своего цвета");
+                return false;
+            }
 		}
 		cells[out.getLetterOrd()][out.getNumOrd()] = getCell(in);
 		cells[in.getLetterOrd()][in.getNumOrd()] = null;
+        return true;
 	}
 
 	public Figure getCell(Coord coord) {
