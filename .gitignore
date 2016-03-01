@@ -8,3 +8,4 @@ moveTables.xlsx
 ~$moveTables.xlsx
 
 target/
+target/classes/game/Coord.class
