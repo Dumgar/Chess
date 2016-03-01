@@ -165,9 +165,16 @@ public class Board {
 		return null;
 	}
 
-	public boolean checkCheck(){
-        for ()
-		return true;
+	public boolean checkCheck(boolean color){
+        Coord king = findKing(color);
+        for (int i = 0; i<8; i++){
+            for (int j=0; j<8; j++){
+                if ((cells[i][j] != null) && (cells[i][j].getKillTable(new Coord(i,j),king))){
+                    return true;
+                }
+            }
+        }
+		return false;
 	}
 
 	public  boolean checkMate() {
