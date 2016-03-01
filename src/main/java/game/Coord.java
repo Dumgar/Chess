@@ -14,7 +14,11 @@ public class Coord {
     }
 
     public Coord(int i, int j){
-
+        try {
+            this.letter = getLetterByOrd(i);
+        } catch (InputDataException e){
+            }
+        this.num = j+1;
     }
 
 	public char getLetter() {
@@ -60,4 +64,3 @@ public class Coord {
     }
 }
 
-// TODO создать 4 геттера + перевод координат в нужном.

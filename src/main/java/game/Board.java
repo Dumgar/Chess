@@ -155,16 +155,18 @@ public class Board {
 	}
 
 	private Coord findKing(boolean color) {
-		for (int i = 0; i < 64; i++){
-			for (int j = 0; j < 64; j++){
+		for (int i = 0; i < 8; i++){
+			for (int j = 0; j < 8; j++){
 				if ((cells[i][j] instanceof King) && cells[i][j].isWhite() == color){
-					return new Coord()
+					return new Coord(i,j);
 				}
 			}
 		}
+		return null;
 	}
 
 	public boolean checkCheck(){
+        for ()
 		return true;
 	}
 
