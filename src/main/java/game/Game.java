@@ -1,5 +1,9 @@
 package game;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 import game.Exeptions.MoveException;
 
 import java.io.BufferedReader;

@@ -50,11 +50,11 @@ public class Board {
 	//TODO Будет ли метод давать исключение?
 	public void move(Coord in, Coord out) throws MoveException{
 		if (!checkMove(in,out)){
-            throw new MoveException("Данный ход не возможен, фигура"+ cells[in.getLetterOrd()][in.getNumOrd()].getType() + "не может туда ходить, или на пути другая фигура");
+            throw new MoveException("Данный ход не возможен, фигура "+ cells[in.getLetterOrd()][in.getNumOrd()].getType() + " не может туда ходить, или на пути другая фигура");
 		}
 		if (getCell(out) != null){
 			if (!getCell(in).getKillTable(in, out)){
-                throw new MoveException("Данный ход не возможен, фигура"+ cells[in.getLetterOrd()][in.getNumOrd()].getType() + "не может туда рубить");
+                throw new MoveException("Данный ход не возможен, фигура "+ cells[in.getLetterOrd()][in.getNumOrd()].getType() + " не может туда рубить");
 			}
             if (getCell(in).getColor() == getCell(out).getColor()){
                 throw new MoveException("Данный ход не возможен, фигура не может рубить фигуры своего цвета");
