@@ -30,8 +30,20 @@ public class Game {
 
 
 	public void startGame(Player player1, Player player2) {
-        while (!player1.mate && !player2.mate) {
+        while (true) {
+            if (player1.check) {
+                if (board.checkMate(player1.color)) {
+                    player1.mate = true;
+                    break;
+                }
+            }
             getStep(player1);
+            if (player2.check) {
+                if (board.checkMate(player2.color)) {
+                    player2.mate = true;
+                    break;
+                }
+            }
             getStep(player2);
         }
 
