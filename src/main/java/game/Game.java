@@ -116,6 +116,7 @@ public class Game {
     private boolean colorCheck(Player player, Coord current) {
         if (board.getCell(current) == null) {
             System.out.println("Клетка пустая");
+            getStep(player);
             return false;
         }
         if (player.color != board.getCell(current).getColor()) {
