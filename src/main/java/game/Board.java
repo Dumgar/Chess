@@ -1,10 +1,9 @@
 package game;
 
-import com.sun.org.apache.xpath.internal.functions.FuncBoolean;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import game.figures.*;
 
 public class Board {
+    private Figure[][] cells;
 
 
 	Board(){
@@ -39,7 +38,11 @@ public class Board {
 		cells[5][7] = blackKing;
 	}
 
-	private Figure[][] cells;
+    Board(Figure[][] currentCells){
+        cells = currentCells;
+    }
+
+
 
 
 
@@ -157,7 +160,7 @@ public class Board {
 	private Coord findKing(boolean color) {
 		for (int i = 0; i < 8; i++){
 			for (int j = 0; j < 8; j++){
-				if ((cells[i][j] instanceof King) && cells[i][j].isWhite() == color){
+				if ((cells[i][j] instanceof King) && cells[i][j].getColor() == color){
 					return new Coord(i,j);
 				}
 			}
@@ -165,6 +168,8 @@ public class Board {
 		return null;
 	}
 
+
+    //Проверить шах королю цвета color.
 	public boolean checkCheck(boolean color){
         Coord king = findKing(color);
         for (int i = 0; i<8; i++){
@@ -177,8 +182,30 @@ public class Board {
 		return false;
 	}
 
-	public  boolean checkMate() {
-		return true;
+    //проверить мат королю цвета color
+	public  boolean checkMate(boolean color) {
+        Board nextTurnBoard;
+        boolean result = false;
+        for (int i = 0; i < 8; i++){
+            for (int j = 0; j < 8; j++){
+                if ((cells[i][j] != null) && (cells[i][j].getColor() == color)){
+                    Coord inCoord = new Coord(i,j);
+                    for (int t=0; t<8; t++){
+                        for (int k=0; k<8; k++){
+                            Coord outCoord = new Coord(t,k);
+                            if (cells[i][j].getMoveTable(inCoord,outCoord)){
+                                nextTurnBoard = new Board(cells);
+                                nextTurnBoard.move(inCoord,outCoord);
+                                if (nextTurnBoard.checkCheck(color) == false){
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return true;
 	}
 
 

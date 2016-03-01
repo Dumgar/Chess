@@ -16,7 +16,7 @@ public abstract class Figure {
 
 	public Figure() {}
 
-	public boolean isWhite() {
+	public boolean getColor() {
 		return color;
 	}
 
