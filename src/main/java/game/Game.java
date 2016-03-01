@@ -11,6 +11,9 @@ public class Game {
     Player player1;
     Player player2;
     Board board;
+    boolean player1Check = false;
+    boolean player2Check = false;
+
 
 	public Game(){
         this.board = new Board();
@@ -33,14 +36,14 @@ public class Game {
 	public void startGame(Player player1, Player player2) {
         while (true) {
             getStep(player1);
-            if (player1.check) {
+            if (player1.check = board.checkCheck(player1.color)) {
                 if (board.checkMate(player1.color)) {
                     player1.mate = true;
                     break;
                 }
             }
             getStep(player2);
-            if (player2.check) {
+            if (player2.check = board.checkCheck(player2.color)) {
                 if (board.checkMate(player2.color)) {
                     player2.mate = true;
                     break;
@@ -69,12 +72,18 @@ public class Game {
             to = makeCoord(step, player)[1];
             if (colorCheck(player, from)) {
                 try {
-                    board.move(from, to);
+                    Board nextStepBoard = board;
+                    nextStepBoard.move(from, to);
+                    if (nextStepBoard.checkCheck(player.color)){
+                        System.out.println("Такой ход невозможен. Вам шах.");
+                        getStep(player);
+                    }
+                    board = nextStepBoard;
                 } catch (MoveException e) {
                     e.printStackTrace();
                     getStep(player);
                 }
-            }
+            }else getStep(player);
         } else if (step.equals("surrender")) {
             System.out.println("Вы признали своё поражение!");
             System.exit(0);
@@ -116,6 +125,7 @@ public class Game {
         }
         return true;
     }
+
 
 //	TODO Непонятно пока как определять победителя, создавать ли класс игрок или как-то флагами это все делать.
 
